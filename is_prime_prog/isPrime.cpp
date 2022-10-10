@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
             cin.clear();
             break;
         }
-    } while (cin.peek() != '\n'));
+    } while ((cin.peek() != '\n'));
     return 0;
 }
 

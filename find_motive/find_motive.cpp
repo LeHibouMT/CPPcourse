@@ -32,10 +32,11 @@ bool motiveinString(string s, string motive)
 int main(int argc, char* argv[])
 {
     int count = 0;
+    string file = argv[1];
     string m = argv[2]; // m est le motif
-    ifstream myfile; // déclaration du fichier
+    fstream myfile; // déclaration du fichier
     string line; // déclaration de ligne
-    myfile.open(argv[1]); // ouverture du fichier
+    myfile.open(file); // ouverture du fichier
     if (myfile.is_open())
     {
         while (myfile >> line)
@@ -53,7 +54,6 @@ int main(int argc, char* argv[])
     }
     else
     {
-        cout << stat(x.c_str(), &buffer) << endl;
         cout << "The file " << argv[1] << " could not be opened.";
         return 1;
     }
