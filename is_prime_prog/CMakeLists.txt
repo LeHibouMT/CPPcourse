@@ -7,7 +7,7 @@ project(MyFirstProg)
 #add_library(mysource STATIC library.cpp)
 
 # add the executable
-add_executable(main isPrime.cpp)
+add_executable(main main.cpp)
 
 # do not forget to link
 #target_link_libraries(main mysource)
