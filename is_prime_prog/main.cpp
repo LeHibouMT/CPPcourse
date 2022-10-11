@@ -28,11 +28,11 @@ int main(int argc, char* argv[])
         {
             if (isPrime(n))
             {
-                cout << n << " is a prime : True" << endl;
+                cout << n << " is a prime: True" << endl;
             }
             else
             {
-                cout << n << " is not a prime : False" << endl;
+                cout << n << " is not a prime: False" << endl;
             }
         }
         else 
