@@ -41,15 +41,15 @@ int main(int argc, char* argv[])
     {
         while (myfile >> line)
         {
-            cout << line << endl;
-            if (motiveinString(line, m))
+            //cout << line << endl;
+            if (motiveinString(line,m))
             {
                 count++;
             }
-            cout << count << endl;
+            //cout << count << endl;
         }
         myfile.close();
-        cout << "The file " << file << " contains " << count << " words containing the motive " << m << endl;
+        cout << "The file " << file << " contains " << count << " words containing the motive " << m << endl ;
         return 1;
     }
     else
