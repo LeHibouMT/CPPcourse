@@ -8,6 +8,10 @@ using namespace std;
 
 bool isPrime(const long long& n)
 {
+    if (n <= 2)
+    {
+        retun false;
+    }
     for (int i = 2; i <= sqrt(n); i++)  // On peut démontrer qu'aller simplement jusqu'à la racine carrée suffit
     {
         if (n % i == 0)
@@ -32,7 +36,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                cout << n << " is not a prime: False" << endl;
+                cout << n << " is a prime: False" << endl;
             }
         }
         else 
