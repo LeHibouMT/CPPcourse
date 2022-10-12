@@ -10,7 +10,7 @@ bool isPrime(const long long& n)
 {
     if (n <= 2)
     {
-        retun false;
+        return false;
     }
     for (int i = 2; i <= sqrt(n); i++)  // On peut démontrer qu'aller simplement jusqu'à la racine carrée suffit
     {
