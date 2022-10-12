@@ -8,7 +8,7 @@ using namespace std;
 
 bool isPrime(const long long& n)
 {
-    if (n <= 2)
+    if (n < 2)
     {
         return false;
     }
