@@ -11,7 +11,7 @@
 #include <optional>
 #include <vector>
 #include <list>
-#include<iterator>
+#include <iterator>
 
 // Defintions
 constexpr double frame_rate = 60.0; // refresh rate
