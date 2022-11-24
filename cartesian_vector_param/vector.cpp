@@ -65,17 +65,27 @@ Vector Vector::operator+(const Vector vector) {
 };
 
 Vector& Vector::operator+=(const value val) {
-    return *this + val;
+    for (int i = 0; i < NDIM; i++) {
+        this->value_[i] = this->value_[i] + val;
+    }
+    return *this;
 }
 
 Vector& Vector::operator+=(const Vector vector) {
-    return *this + vector;
+    for (int i = 0; i < NDIM; i++) {
+        this->value_[i] = this->value_[i] + vector.value_[i];
+    }
+    return *this;
 }
 
 // - functions
 
 Vector Vector::operator-(const value val) {
-    return *this + (-1 * val);
+    auto v = Vector{};
+    for (int i = 0; i < NDIM; i++) {
+        v.value_[i] = this->value_[i] - val;
+    }
+    return v;
 }
 
 Vector Vector::operator-(const Vector vector) {
@@ -87,11 +97,17 @@ Vector Vector::operator-(const Vector vector) {
 }
 
 Vector& Vector::operator-=(const value val) {
-    return *this - val;
+    for (int i = 0; i < NDIM; i++) {
+        this->value_[i] = this->value_[i] - val;
+    }
+    return *this;
 }
 
 Vector& Vector::operator-=(const Vector vector) {
-    return *this - vector;
+    for (int i = 0; i < NDIM; i++) {
+        this->value_[i] = this->value_[i] - vector.value_[i];
+    }
+    return *this;
 }
 
 // * functions
@@ -110,15 +126,13 @@ value Vector::operator*(const Vector vector) {
         v += (this->value_[i] * vector.value_[i]);
     }
     return v;
-
 }
 
 Vector& Vector::operator*=(const value val) {
-    return *this * val;
-}
-
-value Vector::operator*=(const Vector vector) {
-    return *this * vector;
+    for (int i = 0; i < NDIM; i++) {
+        this->value_[i] = this->value_[i] * val;
+    }
+    return *this;
 }
 
 // [] functions

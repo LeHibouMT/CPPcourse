@@ -42,7 +42,6 @@ public:
     Vector operator*(const value val);
     value operator*(const Vector vector);
     Vector& operator*=(const value val);
-    value operator*=(const Vector vector);
     // [] functions
     value operator[](value val) const;
     value& operator[](value val);
