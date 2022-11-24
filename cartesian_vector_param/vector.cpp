@@ -16,7 +16,7 @@ Vector::Vector() {
 }
 
 Vector::Vector(initializer_list<value> list) {
-    auto* p = data(list); // In this case, we need to create a new array as we can't change the size of an array
+    auto* p = data(list); 
     for (int i = 0; i < NDIM; i++) {
         value_[i] = p[i];
     }
