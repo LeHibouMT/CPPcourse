@@ -26,26 +26,26 @@ public:
 
 // Public Member functions here
     value getvalue(int n); // getter
-    void changevalues(value* value); // changer
+    void changevalues(value* val); // changer
     // More to go
     // + functions
-    Vector operator+(const value value);
+    Vector operator+(const value val);
     Vector operator+(const Vector vector);
-    Vector& operator+=(const value value);
+    Vector& operator+=(const value val);
     Vector& operator+=(const Vector vector);
     // - functions
-    Vector operator-(const value value);
+    Vector operator-(const value val);
     Vector operator-(const Vector vector);
-    Vector& operator-=(const value value);
+    Vector& operator-=(const value val);
     Vector& operator-=(const Vector vector);
     // * functions
-    Vector operator*(const value value);
+    Vector operator*(const value val);
     value operator*(const Vector vector);
-    Vector& operator*=(const value value);
+    Vector& operator*=(const value val);
     value operator*=(const Vector vector);
     // [] functions
-    value operator[](value value) const;
-    value& operator[](value value);
+    value operator[](value val) const;
+    value& operator[](value val);
 
 private:
     // Private Member functions here (if necessary)
