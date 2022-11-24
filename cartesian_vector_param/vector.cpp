@@ -2,6 +2,7 @@
 #include "vector.hh"
 #include "config.h"
 #include <ostream>
+#include <initializer_list>
 
 using namespace std;
 //template <class T> // We can use this to avoid redifine data types in function
