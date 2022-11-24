@@ -49,8 +49,8 @@ public:
 
 private:
     // Private Member functions here (if necessary)
-    value value_[NDIM];
     // Member variables are ALWAYS private, and they go here
+    value value_[NDIM];
 };
 
 // Nonmember function operators go here
