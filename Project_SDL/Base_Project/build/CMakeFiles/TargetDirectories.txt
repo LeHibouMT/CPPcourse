@@ -1,0 +1,4 @@
+C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build/SDL_Test/CMakeFiles/SDL_part1.dir
+C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build/SDL_Test/CMakeFiles/ALL_BUILD.dir

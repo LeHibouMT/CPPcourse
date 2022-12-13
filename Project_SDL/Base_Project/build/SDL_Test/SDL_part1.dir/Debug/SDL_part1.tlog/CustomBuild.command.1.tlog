@@ -1,0 +1,10 @@
+^C:\USERS\TAING\DOCUMENTS\GITHUB\CPPCOURSE\PROJECT_SDL\BASE_PROJECT\SDL_TEST\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project -BC:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build --check-stamp-file C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/build/SDL_Test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

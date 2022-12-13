@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\Project_SDL1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2C7CEAD9-2272-31C2-9FDE-48BF7AE530E6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
