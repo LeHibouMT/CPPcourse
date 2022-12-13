@@ -104,11 +104,11 @@ void animal::changems(int ms) {
     this->ms = ms;
 }
 
-bool animal::detectanimal(animal a) {
-    return (((this->x <= a.x && this->x + this->l >= a.x) || // contact in x
-        (this->x >= a.x && this->x <= a.x + a.l)) && 
-        ((this->y <= a.y && this->y + this->w >= a.y) || // contact in y
-            (this->y >= a.y && this->y <= a.y + a.w)));
+bool animal::detectanimal(animal* a) {
+    return (((this->x <= a->x && this->x + this->l >= a->x) || // contact in x
+        (this->x >= a->x && this->x <= a->x + a->l)) &&
+        ((this->y <= a->y && this->y + this->w >= a->y) || // contact in y
+            (this->y >= a->y && this->y <= a->y + a->w)));
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -146,18 +146,18 @@ void sheep::changetimer(time_t t) {
     this->timer = t;
 }
 
-void sheep::run(std::vector<animal> v) {
+void sheep::run(std::vector<animal*> v) {
     // find the direction of the nearest sheep
     if (v.empty());
     else {
         double min = 7; // the sheep will change direction if near <7 blocks from a wolf
         int dir = 0;
-        std::vector<animal>::iterator it;
+        std::vector<animal*>::iterator it;
         for (it = v.begin(); it != v.end(); it++) {
-            if (sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2)) < min) {
-                min = sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2));
-                if (pow(this->getpositionX() - it->getpositionX(), 2) < pow((this->getpositionY() - it->getpositionY()), 2)) { // it means that the wolf should move in x
-                    if (this->getpositionX() - it->getpositionX() > 0) { 
+            if (sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2)) < min) {
+                min = sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2));
+                if (pow(this->getpositionX() - (*it)->getpositionX(), 2) < pow((this->getpositionY() - (*it)->getpositionY()), 2)) { // it means that the wolf should move in x
+                    if (this->getpositionX() - (*it)->getpositionX() > 0) {
                         this->changedirection(1); 
                         this->changems(5);
                         this->step = 1;
@@ -169,7 +169,7 @@ void sheep::run(std::vector<animal> v) {
                     }
                 }
                 else {
-                    if (this->getpositionY() - it->getpositionY() > 0) {
+                    if (this->getpositionY() - (*it)->getpositionY() > 0) {
                         this->changedirection(2);
                         this->changems(5);
                         this->step = 1;
@@ -193,21 +193,21 @@ wolf::wolf(SDL_Surface* window_surface_ptr) : animal("wolf.png", window_surface_
     this->changedirection(-1); // so the wolf doesn't move if there is no sheep
 }
 
-void wolf::findsheep(std::vector<animal> v) {
+void wolf::findsheep(std::vector<animal*> v) {
     // find the direction of the nearest sheep
     if (v.empty()) this->changedirection(-1);
     else {
         double min = 10000.0; // we take a huge number to be sure
-        std::vector<animal>::iterator it;
+        std::vector<animal*>::iterator it;
         for (it = v.begin(); it != v.end(); it++) {
-            if (sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2)) < min) {
-                min = sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2));
-                if (pow(this->getpositionX() - it->getpositionX(), 2) < pow((this->getpositionY() - it->getpositionY()), 2)) { // it means that the wolf should move in x
-                    if (this->getpositionX() - it->getpositionX() > 0) this->changedirection(3); // it means that the wolf is at the right side of the sheep
+            if (sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2)) < min) {
+                min = sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2));
+                if (pow(this->getpositionX() - (*it)->getpositionX(), 2) < pow((this->getpositionY() - (*it)->getpositionY()), 2)) { // it means that the wolf should move in x
+                    if (this->getpositionX() - (*it)->getpositionX() > 0) this->changedirection(3); // it means that the wolf is at the right side of the sheep
                     else this->changedirection(1);
                 }
                 else {
-                    if (this->getpositionY() - it->getpositionY() > 0) this->changedirection(0);
+                    if (this->getpositionY() - (*it)->getpositionY() > 0) this->changedirection(0);
                     else this->changedirection(2);
                 }
             }
@@ -215,21 +215,21 @@ void wolf::findsheep(std::vector<animal> v) {
     }
 }
 
-void wolf::finddog(std::vector<animal> v) {
+void wolf::finddog(std::vector<animal*> v) {
     // find the direction of the nearest dog
     if (v.empty());
     else {
         double min = 6.0; // we take 
-        std::vector<animal>::iterator it;
+        std::vector<animal*>::iterator it;
         for (it = v.begin(); it != v.end(); it++) {
-            if (sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2)) < min) {
-                min = sqrt(pow(this->getpositionX() - it->getpositionX(), 2) + pow((this->getpositionY() - it->getpositionY()), 2));
-                if (pow(this->getpositionX() - it->getpositionX(), 2) < pow((this->getpositionY() - it->getpositionY()), 2)) { // it means that the wolf should move in x
-                    if (this->getpositionX() - it->getpositionX() > 0) this->changedirection(1); // it means that the wolf is at the right side of the dog
+            if (sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2)) < min) {
+                min = sqrt(pow(this->getpositionX() - (*it)->getpositionX(), 2) + pow((this->getpositionY() - (*it)->getpositionY()), 2));
+                if (pow(this->getpositionX() - (*it)->getpositionX(), 2) < pow((this->getpositionY() - (*it)->getpositionY()), 2)) { // it means that the wolf should move in x
+                    if (this->getpositionX() - (*it)->getpositionX() > 0) this->changedirection(1); // it means that the wolf is at the right side of the dog
                     else this->changedirection(3);
                 }
                 else {
-                    if (this->getpositionY() - it->getpositionY() > 0) this->changedirection(2);
+                    if (this->getpositionY() - (*it)->getpositionY() > 0) this->changedirection(2);
                     else this->changedirection(0);
                 }
             }
@@ -362,60 +362,76 @@ ground::~ground() {
     SDL_FreeSurface(window_surface_ptr_);
 }
 
-void ground::add_animal(sheep s) {
+void ground::add_animal(sheep* s) {
     this->vsheep.push_back(s);
     this->vanimalsheep.push_back(s);
 }
 
-void ground::add_animal(wolf w) {
+void ground::add_animal(wolf* w) {
     this->vwolf.push_back(w);
     this->vanimalwolf.push_back(w);
 }
 
-void ground::remove_animal(sheep s) {
-    std::vector<sheep>::iterator it;
-    it = remove(this->vsheep.begin(), this->vsheep.end(), s);
-    std::vector<animal>::iterator itt;
-    itt = remove(this->vanimalsheep.begin(), this->vanimalsheep.end(), s);
+void ground::remove_animal(sheep* s) {
+    std::vector<sheep*>::iterator it = this->vsheep.begin();
+    while (it != this->vsheep.end())
+    {
+        if ((*it) == s)
+        {
+            it = this->vsheep.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
 }
 
-void ground::remove_animal(wolf w) {
-    std::vector<wolf>::iterator it;
-    it = remove(this->vwolf.begin(), this->vwolf.end(), w);
-    std::vector<animal>::iterator itt;
-    itt = remove(this->vanimalwolf.begin(), this->vanimalwolf.end(), w);
+void ground::remove_animal(wolf* w) {
+    std::vector<wolf*>::iterator it = this->vwolf.begin();
+    while (it != this->vwolf.end())
+    {
+        if ((*it) == w)
+        {
+            it = this->vwolf.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
 }
 
 void ground::starvewolf() {
-    for (wolf w : this->vwolf) {
-        if (w.gettimer() > 10) this->remove_animal(w);
+    for (wolf* w : this->vwolf) {
+        if (w->gettimer() > 10) this->remove_animal(w);
     }
 }
 
 void ground::eatsheep() {
-    for (wolf w : this->vwolf) {
-        for (sheep s : this->vsheep) {
-            if (w.detectanimal(s)) {
+    for (wolf* w : this->vwolf) {
+        for (sheep* s : this->vsheep) {
+            if (w->detectanimal(s)) {
                 this->remove_animal(s);
-                w.changetimer(0);
+                w->changetimer(0);
             }
         }
     }
 }
 
 void ground::reproducesheep() {
-    for (sheep s : this->vsheep) {
-        for (sheep ss : this->vsheep) {
-            if (s.detectanimal(ss)) {
-                if ((s.getismale() == 0 && s.gettimer() > 7 && ss.getismale() == 1)) {
-                    sheep a = sheep::sheep(this->window_surface_ptr_);
+    for (sheep* s : this->vsheep) {
+        for (sheep* ss : this->vsheep) {
+            if (s->detectanimal(ss)) {
+                if ((s->getismale() == 0 && s->gettimer() > 7 && ss->getismale() == 1)) {
+                    sheep* a = &sheep::sheep(this->window_surface_ptr_);
                     this->add_animal(a);
-                    s.changetimer(0);
+                    s->changetimer(0);
                 }
-                if ((ss.getismale() == 0 && ss.gettimer() > 7 && s.getismale() == 1)) {
-                    sheep a = sheep::sheep(this->window_surface_ptr_);
+                if ((ss->getismale() == 0 && ss->gettimer() > 7 && s->getismale() == 1)) {
+                    sheep* a = &sheep::sheep(this->window_surface_ptr_);
                     this->add_animal(a);
-                    ss.changetimer(0);
+                    ss->changetimer(0);
                 }
             } 
         }
@@ -426,22 +442,22 @@ void ground::update() {
     this->starvewolf();
     this->eatsheep();
     this->reproducesheep();
-    for (sheep s : this->vsheep) {
-        s.draw();
-        s.run(this->vanimalwolf); // we determine if the sheep need to change direction or not
-        s.move();
-        s.changetimer(clock() - s.gettimer());
+    for (sheep* s : this->vsheep) {
+        s->draw();
+        s->run(this->vanimalwolf); // we determine if the sheep need to change direction or not
+        s->move();
+        s->changetimer(clock() - s->gettimer());
     }
-    for (wolf w : this->vwolf) {
-        w.draw();
-        w.findsheep(this->vanimalsheep); // we determine if the wolf need to change direction or not
-        w.finddog(this->vanimaldog); // we determine if the wolf should stay away from a dog instead of going to a sheep
-        w.move();
-        w.changetimer(clock() - w.gettimer());
+    for (wolf* w : this->vwolf) {
+        w->draw();
+        w->findsheep(this->vanimalsheep); // we determine if the wolf need to change direction or not
+        w->finddog(this->vanimaldog); // we determine if the wolf should stay away from a dog instead of going to a sheep
+        w->move();
+        w->changetimer(clock() - w->gettimer());
     }
-    for (dog d : this->vdog) {
-        d.draw();
-        d.move();
+    for (dog* d : this->vdog) {
+        d->draw();
+        d->move();
     }
 }
 
@@ -469,13 +485,13 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
     // we add the sheep
     for (int i = 1; i < n_sheep; i++) {
-        auto sheep = sheep::sheep(window_surface_ptr_);
+        auto* sheep = &sheep::sheep(window_surface_ptr_);
         this->ground.add_animal(sheep);
     }
 
     // we add the wolf
     for (int i = 1; i < n_wolf; i++) {
-        auto wolf = sheep::sheep(window_surface_ptr_);
+        auto* wolf = &sheep::sheep(window_surface_ptr_);
         this->ground.add_animal(wolf);
     }
 

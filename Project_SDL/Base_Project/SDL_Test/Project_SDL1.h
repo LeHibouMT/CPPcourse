@@ -72,7 +72,7 @@ public:
 
   void changems(int ms);
 
-  bool detectanimal(animal a);
+  bool detectanimal(animal* a);
 
 };
 
@@ -100,7 +100,7 @@ public :
 
     void changetimer(time_t t);
 
-    void run(std::vector<animal> v);
+    void run(std::vector<animal*> v);
 
 };
 
@@ -115,9 +115,9 @@ public :
     // Dtor
       // same destructor, no need for a new one
     // implement functions that are purely virtual in base class
-    void findsheep(std::vector<animal> v); // give direction to get to the nearest move
+    void findsheep(std::vector<animal*> v); // give direction to get to the nearest move
     
-    void finddog(std::vector<animal> v); // give direction to stay away from the nearest dog
+    void finddog(std::vector<animal*> v); // give direction to stay away from the nearest dog
 
     void move(); // move in the direction of the nearest sheep
 
@@ -174,22 +174,22 @@ private:
   SDL_Event event;
   // Some attribute to store all the wolves and sheep
   // here
-  std::vector<sheep> vsheep;  // we cant convert iterator type so we are using two type of vector
-  std::vector<animal> vanimalsheep;
-  std::vector<wolf> vwolf;
-  std::vector<animal> vanimalwolf;
-  std::vector<dog> vdog;
-  std::vector<animal> vanimaldog;
+  std::vector<sheep*> vsheep;  // we cant convert iterator type so we are using two type of vector
+  std::vector<animal*> vanimalsheep;
+  std::vector<wolf*> vwolf;
+  std::vector<animal*> vanimalwolf;
+  std::vector<dog*> vdog;
+  std::vector<animal*> vanimaldog;
   shepherd player = shepherd(this->window_surface_ptr_, this->event);
 
 public:
   ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~ground(); // todo: Dtor, again for clean up (if necessary)
   // todo: Add an animal
-  void add_animal(sheep s); // for sheep
-  void add_animal(wolf s); // for wolf
-  void remove_animal(sheep s);
-  void remove_animal(wolf s);
+  void add_animal(sheep* s); // for sheep
+  void add_animal(wolf* s); // for wolf
+  void remove_animal(sheep* s);
+  void remove_animal(wolf* s);
   void starvewolf(); // wolf dying of starvation
   void eatsheep(); // wolf eating sheep
   void reproducesheep(); // reproducing sheep
