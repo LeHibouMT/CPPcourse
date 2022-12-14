@@ -1,9 +1,0 @@
-﻿  Building Custom Rule C:/Users/taing/Documents/GitHub/CPPcourse/Project_SDL/Base_Project/SDL_Test/CMakeLists.txt
-  main.cpp
-C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\main.cpp(10,1): warning C4297: 'SDL_main' : la fonction lève une exception alors qu'elle est présumée ne pas le faire
-C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\main.cpp(10,1): message : __declspec(nothrow), throw(), noexcept(true) ou noexcept a été spécifié sur la fonction
-  Project_SDL1.cpp
-C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\Project_SDL1.cpp(487,23): warning C4018: '<' : incompatibilité signed/unsigned
-C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\SDL_Test\Project_SDL1.cpp(493,23): warning C4018: '<' : incompatibilité signed/unsigned
-  Génération de code en cours...
-  SDL_part1.vcxproj -> C:\Users\taing\Documents\GitHub\CPPcourse\Project_SDL\Base_Project\build\SDL_Test\Debug\SDL_part1.exe
